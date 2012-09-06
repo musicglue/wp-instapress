@@ -44,8 +44,6 @@
 		ini_set('include_path',	$instapressIncludePath); // ini_set versuchen
 	
 	require_once 'Instagram_XAuth.php';
-	
-	require_once 'Instapress_TinyMCE.php';
 
 	class InstagramPlugin
 	{

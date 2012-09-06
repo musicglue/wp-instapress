@@ -170,9 +170,7 @@
 		 */
 		function stylesheet()
 		{
-			// Default-Stylesheet
-			wp_enqueue_style('instapress', plugins_url('/instapress.css', __FILE__));
-			
+
 			if(InstagramPlugin::getInstance()->effectsEnabled()) 
 			{
 				// Fancybox
