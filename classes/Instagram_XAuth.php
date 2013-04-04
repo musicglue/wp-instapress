@@ -8,7 +8,7 @@ class Instagram_XAuth extends Instagram
 	/**
 	 * @param $errorCode &string Pointer to a string which will store an error message if authorization was not successful
 	 */
-	public function getAccessToken($errorMsg = null) 
+	public function getAccessToken(&$errorMsg = null) 
 	{
 		// If there is no token yet, try getting an access token via xAuth-Configuration
 		if(!$this->_accessToken)

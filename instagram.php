@@ -64,25 +64,25 @@
 		function InstagramPlugin()
 		{
 			// Menü im Backend hinzufügen
-			add_action('admin_menu', array(&$this, 'admin_menu'));
+			add_action('admin_menu', array($this, 'admin_menu'));
 			
 			// Shortcode registrieren
-			add_shortcode('instapress', array(&$this, 'shortcode'));
+			add_shortcode('instapress', array($this, 'shortcode'));
 			
 			// Link in der Plugins-Liste zu den Einstellungen
-			add_filter('plugin_action_links', array(&$this, 'plugin_page_link'), 5, 2);
+			add_filter('plugin_action_links', array($this, 'plugin_page_link'), 5, 2);
 			
 			// Links unterhalb der Plugin-Beschreibung
-			add_filter('plugin_row_meta', array(&$this, 'plugin_row_meta'), 10, 2);
+			add_filter('plugin_row_meta', array($this, 'plugin_row_meta'), 10, 2);
 			
 			// Pfad in dem Cache-Dateien abgespeichert werden
 			$this->cachePath = ABSPATH.'wp-content/cache/';
 			
 			// Javascripts ergänzen
-			add_action('init', array(&$this, 'javascript'));
+			add_action('init', array($this, 'javascript'));
 			
-			add_action('wp_ajax_instapress_paging', array(&$this, 'ajax_instapress_paging'));
-			add_action('wp_ajax_nopriv_instapress_paging', array(&$this, 'ajax_instapress_paging'));
+			add_action('wp_ajax_instapress_paging', array($this, 'ajax_instapress_paging'));
+			add_action('wp_ajax_nopriv_instapress_paging', array($this, 'ajax_instapress_paging'));
 		}
 		
 		/**
@@ -301,12 +301,12 @@
 				$max_id = $nextMaxId;
 				// Feed eines Users ab der gegebenen max_id laden und nächsten max_id holen
 				if(!$tagFeed)
-					$data = InstagramPlugin::getFeedByUserId($userid, $max_id, &$nextMaxId, intval($values['piccount']));
+					$data = InstagramPlugin::getFeedByUserId($userid, $max_id, $nextMaxId, intval($values['piccount']));
 				// Feed eines Users nach Tag gefiltert ab der gegebenen max_id laden und nächsten max_id holen
 				else if($tagFeed && $userid)
-					$data = InstagramPlugin::getFeedByUserId($userid, $max_id, &$nextMaxId, intval($values['piccount']), new InstapressFeedFilter('tags', $values['tag'], InstapressFeedFilter::IN_ARRAY));
+					$data = InstagramPlugin::getFeedByUserId($userid, $max_id, $nextMaxId, intval($values['piccount']), new InstapressFeedFilter('tags', $values['tag'], InstapressFeedFilter::IN_ARRAY));
 				else // Feed nach angegebenem Tag laden
-					$data = InstagramPlugin::getFeedByTag($values['tag'], $max_id, &$nextMaxId, intval($values['piccount']));
+					$data = InstagramPlugin::getFeedByTag($values['tag'], $max_id, $nextMaxId, intval($values['piccount']));
 
 				// Daten im Feed gefunden
 				if(count($data) > 0)
@@ -384,7 +384,7 @@
 		 * 
 		 * @return array der Feed (siehe Instagram API Dokumentation)
 		 */
-		function getFeedByUserId($userid, $max_id = '', $nextMaxId = 0, $count = 0, $filter = null)
+		function getFeedByUserId($userid, $max_id = '', &$nextMaxId = 0, $count = 0, $filter = null)
 		{	
 			$writeToCache = true;
 									
@@ -447,7 +447,7 @@
 		 * 
 		 * @return array der Feed (siehe Instagram API Dokumentation)
 		 */
-		function getFeedByTag($tag, $max_id = '', $nextMaxId = 0, $count = 0)
+		function getFeedByTag($tag, $max_id = '', &$nextMaxId = 0, $count = 0)
 		{	
 			$writeToCache = true;
 									
@@ -772,7 +772,7 @@
 					// In dieser Variable werden eventuelle Fehlermeldungen während der Autorisierung gespeichert
 					$errorMessage = "";
 					// Request an das API schicken, um einen Access-Token zu erhalten
-					$token = $instagram->getAccessToken(&$errorMessage);
+					$token = $instagram->getAccessToken($errorMessage);
 				
 					// Wenn es einen Access-Token gibt
 					if($token)
@@ -840,7 +840,7 @@
 		 */
 		function admin_menu()
 		{
-			add_options_page('Instapress '.__('Settings', 'instagram'), 'Instapress', 8, basename(__FILE__), array(&$this, 'handleOptions'));
+			add_options_page('Instapress '.__('Settings', 'instagram'), 'Instapress', 8, basename(__FILE__), array($this, 'handleOptions'));
 		}
 		
 		/**
@@ -1107,7 +1107,7 @@
 		$InstagramPlugin = InstagramPlugin::getInstance();
 		if (isset($InstagramPlugin)) 
 		{
-			register_activation_hook(__FILE__, array(&$InstagramPlugin, 'install'));
+			register_activation_hook(__FILE__, array($InstagramPlugin, 'install'));
 		}
 	endif;
 	
