@@ -39,7 +39,7 @@
 			echo '</div>';
 		?>
 			<div>
-				<input type="submit" class="button-primary" name="instagram-reset-settings" value="<?php _e('Reset settings', 'instagram'); ?>" />
+				<input type="submit" name="instagram-reset-settings" value="<?php _e('Reset settings', 'instagram'); ?>" />
 			</div>
 		<?php
 		else:
@@ -63,7 +63,7 @@
 						<input type="password" id="instagram-app-user-password" name="instagram-app-user-password" value="<?php echo esc_attr( $instagramOptions['app_user_password'] ) ?>" />
 					</div>
 					<div>
-						<input type="submit" class="button-primary" name="instagram-update-auth-settings" value="<?php _e('Save settings', 'instagram'); ?>" />
+						<input type="submit" name="instagram-update-auth-settings" value="<?php _e('Save settings', 'instagram'); ?>" />
 					</div>
 				</div>
 			</div>
@@ -95,14 +95,14 @@
 			endif;
 		?>
 		<p>
-			<input type="checkbox" class="button-primary" name="instagram-disable-fancybox" id="instagram-disable-fancybox" <?php echo esc_attr( $instagramOptions['app_disable_effects'] ) ? ' checked="checked"' : '' ?> />
+			<input type="checkbox" name="instagram-disable-fancybox" id="instagram-disable-fancybox" <?php echo esc_attr( $instagramOptions['app_disable_effects'] ) ? ' checked="checked"' : '' ?> />
 			<label for="instagram-disable-fancybox"><?php _e('Disable any effects (e.g. fancybox)', 'instagram'); ?> </label>
 			<span style="display: block">
 				<i>(<?php _e('Note: Do only check this if you are having conflicts with other effects or if you do not want to use any effect', 'instagram'); ?>)</i>
 			</span>
 		</p>
 		<p>
-			<input type="checkbox" class="button-primary" name="instagram-show-backlink" id="instagram-show-backlink" <?php echo esc_attr( $instagramOptions['app_show_backlink'] ) ? ' checked="checked"' : '' ?> />
+			<input type="checkbox" name="instagram-show-backlink" id="instagram-show-backlink" <?php echo esc_attr( $instagramOptions['app_show_backlink'] ) ? ' checked="checked"' : '' ?> />
 			<label for="instagram-show-backlink"><?php _e('Support Instapress by showing a backlink to http://instapress.it among widget or gallery', 'instagram'); ?> </label>
 		</p>
 		<div>
@@ -111,7 +111,7 @@
 				<?php _e('Those settings may only affect you if you have a basic understanding for HTML.', 'instagram'); ?>
 			</p>
 			<p>
-				<input type="checkbox" class="button-primary" name="instagram-disable-image-attr" id="instagram-disable-image-attr" <?php echo esc_attr( $instagramOptions['app_disable_image_attributes'] ) ? ' checked="checked"' : '' ?> />
+				<input type="checkbox" name="instagram-disable-image-attr" id="instagram-disable-image-attr" <?php echo esc_attr( $instagramOptions['app_disable_image_attributes'] ) ? ' checked="checked"' : '' ?> />
 				<label for="instagram-disable-image-attr"><?php _e('Disable width and height attribute for images (e.g. for responsive layouts)', 'instagram'); ?> </label>
 			</p>
 		</div>
